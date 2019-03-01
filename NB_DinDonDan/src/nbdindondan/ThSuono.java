@@ -81,13 +81,30 @@ public class ThSuono extends Thread {
                     yield();
                     ptrdati.aggiungi(suono);
                     if (suono.equals("DIN")) {
+                        
+                        ptrdati.vuoto.acquire();
+                                                
                         ptrdati.setContaDIN(ptrdati.getContaDIN() + 1);
+                        System.out.println("DIN");
+                        
+                        ptrdati.pieno.release();
                     }
                     if (suono.equals("DON")) {
-                        ptrdati.setContaDON(ptrdati.getContaDON() + 1);
+                        
+                        ptrdati.pieno.acquire();
+                            ptrdati.vuoto2.acquire();
+                            ptrdati.setContaDON(ptrdati.getContaDON() + 1);
+                            System.out.println("DON");
+                            ptrdati.pieno2.release();
+                        ptrdati.vuoto.release();
+                        
                     }
+                    
                     if (suono.equals("DAN")) {
+                        ptrdati.pieno2.acquire();
                         ptrdati.setContaDAN(ptrdati.getContaDAN() + 1);
+                        System.out.println("DAN");
+                        ptrdati.vuoto2.release();
                     }
                 }
                 int min = 100;

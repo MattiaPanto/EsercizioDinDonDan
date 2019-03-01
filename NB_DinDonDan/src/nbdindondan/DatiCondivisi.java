@@ -4,7 +4,7 @@
  * and open the template in the editor.
  */
 package nbdindondan;
-
+import java.util.concurrent.Semaphore;
 /**
  *
  * @author Princess Joy Padua
@@ -17,6 +17,8 @@ public class DatiCondivisi {
      * Creo variabili di tipo int che mi vanno a contare i suoni effettuati dai thread.
      * 
      */
+    Semaphore pieno,vuoto,pieno2,vuoto2;
+    
     int contaDIN=0,contaDON=0,contaDAN=0;
     
     int maxElem=10000000;
@@ -24,6 +26,11 @@ public class DatiCondivisi {
     int p;
 
     public DatiCondivisi() {
+        pieno = new Semaphore(0);
+        vuoto = new Semaphore(1);
+        pieno2 = new Semaphore(0);
+        vuoto2 = new Semaphore(1);
+        
         this.schermo=new String [maxElem];
         this.p=0;
     }
