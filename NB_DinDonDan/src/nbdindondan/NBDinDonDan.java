@@ -14,7 +14,7 @@ import java.util.logging.Logger;
 
 /**
  *
- * @author Princess Joy Padua
+ * @author Pantò
  *
  * @brief Main
  *
